@@ -1,0 +1,12 @@
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+palvelin-->selain: STATUS 201 Created
+
+note over selain:
+selain lähettää siis vain yhden pyynnön palvelimelle
+palvelin ei pyydä uudelleenohjausta vaan
+javascript koodi laittaa tapahtumankäsittelijän
+hoitamaan tilanteen (luomaan uuden muistiinpanon, 
+lisää sen listalle ja piirtää ruudun
+sisällön eli muistiinpanojen listan uudelleen
+ja lähettää uuden muistiinpanon palvelimelle 
+end note
