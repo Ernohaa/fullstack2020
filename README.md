@@ -3,3 +3,5 @@
 [Osa0](https://github.com/Ernohaa/fullstack2019/tree/master/Osa0)
 
 [Osa1](https://github.com/Ernohaa/fullstack2019/tree/master/osa1)
+
+[Osa2](https://github.com/Ernohaa/fullstack2019/tree/master/Osa2)
