@@ -8,4 +8,4 @@
 
 [Osa3](https://github.com/Ernohaa/fullstack2019/tree/master/Osa3)
 
-[Osa4](https://github.com/Ernohaa/fullstack2019/tree/master/Osa4)
+[Osa4](https://github.com/Ernohaa/fullstack2019/tree/master/osa4)
