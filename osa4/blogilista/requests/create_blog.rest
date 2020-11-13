@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVmYWMxODVjZGNkYzc3M2YxNGIyMTJlNiIsImlhdCI6MTYwNTIwNzI4OH0.jH9g0Q8OdFXbYLLHzRLG4SwnJK41T7cOLSbHJlyPDVE
+
+{
+  "title": "tokenin kera 2",
+  "author": "testaaja",
+  "url": "www.google.com",
+  "likes": "6"
+  
+}
