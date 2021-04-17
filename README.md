@@ -11,3 +11,5 @@
 [Osa4](https://github.com/Ernohaa/fullstack2019/tree/master/osa4)
 
 [Osa5](https://github.com/Ernohaa/fullstack2019/tree/master/osa5)
+
+[Osa6](https://github.com/Ernohaa/fullstack2019/tree/master/osa6)
