@@ -1,0 +1,11 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVmYmZkMmZlMTQyNDA2MDEyMDlkYWE4NCIsImlhdCI6MTYwNjQwNjk4OH0.GU5Y9cqXeGjoAjGOgX2D6t441h6IwvveYkrpKqLLS8w
+
+{
+  "title": "yet another test",
+  "author": "testingman",
+  "url": "www.google.com",
+  "likes": "6"
+  
+}
