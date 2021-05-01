@@ -7,8 +7,7 @@ const Notification = () => {
   const msg = useSelector(state => state.notification)
   return (
     <div className="error">
-      {msg === "" ? null :
-      msg}
+      {msg === "" ? null : <h5>{msg}</h5>}
     </div>
   )
 }
