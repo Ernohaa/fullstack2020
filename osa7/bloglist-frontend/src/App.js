@@ -4,8 +4,8 @@ import Notification from './components/Notification'
 import { useDispatch, useSelector } from 'react-redux'
 import { initializeBlogs } from './reducers/blogReducer'
 import LoginForm from './components/LoginForm'
-import Todoblogs from './components/Todoblogs'
-import Todoblog from './components/Todoblog'
+import Blogs from './components/Blogs'
+import Blog from './components/Blog'
 import { Switch, Route } from "react-router-dom"
 
 const App = () => {
@@ -44,10 +44,10 @@ const App = () => {
       <Notification/>
       <Switch>
         <Route path="/blogs/:id">
-        <Todoblog/>
+        <Blog/>
         </Route>
         <Route path="/">
-        <Todoblogs/>
+        <Blogs/>
         </Route>
       </Switch>
     </div>

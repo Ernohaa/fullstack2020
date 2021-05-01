@@ -1,66 +1,44 @@
-import React, { useState } from 'react'
-import blogService from '../services/blogs'
+import React from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import { toggleLikeCount } from '../reducers/blogReducer'
+import { useRouteMatch } from "react-router-dom"
+import { setNotification } from '../reducers/notificationReducer'
+import { Button } from 'react-bootstrap'
 
-const Blog = ({ blog }) => {
 
-  const [infoVisible, setInfoVisible] = useState(false)
-  const [likes,setLikes] = useState(blog.likes)
 
-  const hideWhenVisible = { display: infoVisible ? 'none' : '' }
-  const showWhenVisible = { display: infoVisible ? '' : 'none' }
+const Blog = () => {
 
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    paddingRight: 5,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
-  }
-
-  const addLikes = async () => {
-    const updatedBlog = {
-      user: blog.user.id || blog.user,
-      title: blog.title,
-      author: blog.author,
-      url: blog.url,
-      likes: likes + 1
-    }
+  const blogs = useSelector(state => state.blog)
+  const match = useRouteMatch('/blogs/:id')
+  const blog = match ? blogs.find(blog => blog.id === match.params.id) : null
+  const dispatch = useDispatch()
+  const addLikes = async (blog) => {
+  
     try {
-      setLikes(updatedBlog.likes)
-      await blogService.update(blog.id,updatedBlog)
+      dispatch(toggleLikeCount(blog))
+      dispatch(setNotification('Blog liked',3))
+  
     } catch (error) {
       console.log(error)
     }
   }
 
+  if (!blog) {
+    return null
+  }
+  
   return (
-    <div className='test' style={blogStyle}>
-      <div className='Testvisibility' style={hideWhenVisible}>
-        {blog.title}
-        <div>
-          {blog.author}
-        </div>
-        <button id='view' onClick={() => setInfoVisible(true)}>view</button>
+    <div>
+      <h3>{blog.title}</h3>
+      <a href={blog.url}> <h5>{blog.url}</h5></a>
+      <div>
+        <h5>{blog.likes} likes</h5> <Button variant="primary" id='like' onClick={() => addLikes(blog)}>Like</Button>
       </div>
-      <div style={showWhenVisible}>
-        <div>
-          {blog.title}
-        </div>
-        <div>
-          {blog.author}
-        </div>
-        <div>
-          {blog.url}
-        </div>
-        <div>
-          likes {likes}
-          <button id='like' onClick={addLikes}>Like</button>
-        </div>
-        <button onClick={() => setInfoVisible(false)}>hide</button>
+      <div>
+        <h4>added by {blog.author}</h4>
       </div>
-
-    </div>
+    </div>   
   )
 }
 
