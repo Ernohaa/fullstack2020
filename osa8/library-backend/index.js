@@ -4,10 +4,10 @@ const Book = require('./models/book')
 const Author = require('./models/author')
 const User = require('./models/user')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
-const JWT_SECRET = 'secret'
-
-const MONGODB_URI = ''
+let MONGODB_URI = process.env.MONGODB_URI
+let JWT_SECRET = process.env.JWT_SECRET
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(() => {
