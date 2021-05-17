@@ -8,7 +8,9 @@ const Books = (props) => {
     query {
       allBooks{
         title
-        author
+        author {
+          name
+        }
         published
       }
     }
@@ -23,14 +25,16 @@ const Books = (props) => {
   if (!props.show) {
     return null
   }
-
+  
   return (
     <div>
       <h2>books</h2>
       <table>
         <tbody>
           <tr>
-            <th></th>
+            <th>
+              title
+            </th>
             <th>
               author
             </th>
@@ -41,7 +45,7 @@ const Books = (props) => {
           {books.data.allBooks.map(a =>
             <tr key={a.title}>
               <td>{a.title}</td>
-              <td>{a.author}</td>
+              <td>{a.author.name}</td>
               <td>{a.published}</td>
             </tr>
           )}

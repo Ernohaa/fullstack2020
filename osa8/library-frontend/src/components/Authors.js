@@ -41,7 +41,6 @@ const [born, setBorn] = useState('')
     return null
   }
 
-
   const options = authors.data.allAuthors.map( a => ({
     value: a.name,
     label: a.name
