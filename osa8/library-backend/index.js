@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 
 const JWT_SECRET = 'secret'
 
-const MONGODB_URI = 'mongodb+srv://testikayttaja:uusiavaintuleekäyttööönnyt1234123141421@cluster0.7um9t.mongodb.net/Books?retryWrites=true&w=majority'
+const MONGODB_URI = ''
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(() => {
