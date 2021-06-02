@@ -1,31 +1,10 @@
 import React, { useState } from 'react'
-import { gql, useQuery } from '@apollo/client'
-
+import { useQuery } from '@apollo/client'
+import { allBooks } from '../queries'
 const Books = (props) => {
 
   const [filter,setFilter] = useState(null)
-
-  const BOOK_DETAILS = gql`
-    fragment BookDetails on Book {
-      title
-      author {
-        name
-      }
-      published
-      genres
-    }
-    `
-  
-  const allBooks = gql`
-      {
-        allBooks {
-          ...BookDetails
-      }
-    }
-    ${BOOK_DETAILS}
-  `
   let books = useQuery(allBooks)
-
   
   if (!props.show) {
     return null
@@ -45,7 +24,6 @@ const Books = (props) => {
 
   if (filter) {
     books = books.filter(books => books.genres.includes(filter))
-    
   }
   
   return (

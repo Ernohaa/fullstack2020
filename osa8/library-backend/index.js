@@ -5,6 +5,8 @@ const Author = require('./models/author')
 const User = require('./models/user')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
+const { PubSub } = require('apollo-server')
+const pubsub = new PubSub()
 
 let MONGODB_URI = process.env.MONGODB_URI
 let JWT_SECRET = process.env.JWT_SECRET
@@ -18,6 +20,10 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true,
   })
 
 const typeDefs = gql`
+
+  type Subscription {
+    bookAdded: Book!
+  } 
 
   type User {
     username: String!
@@ -82,8 +88,11 @@ const resolvers = {
   Query: {  
 
     authorCount: () => Author.collection.countDocuments(),
-    allAuthors: () => { return Author.find({}) },
+    allAuthors: () => { 
+      console.log("haetaan kirjoittajia")
+      return Author.find({})},
     allBooks: (root, args) => { 
+      console.log("haetaan kirjoja")
       if (args.genre) {
         return Book.find({genres: {$in: [args.genre]}}).populate('author')
       } else {
@@ -97,7 +106,9 @@ const resolvers = {
   },
 
   Author: {
+
     bookCount: async (root) => {
+      console.log("haetaan kirjoittajia")
       const bookcount = await Book.find({ author: root._id })
       return bookcount.length
     }
@@ -151,7 +162,10 @@ const resolvers = {
           throw new UserInputError(error.message, {
             invalidArgs: args,
           })
-        } 
+        }
+        
+        pubsub.publish('BOOK_ADDED', { bookAdded: book })
+        
         return book        
     },
 
@@ -168,7 +182,12 @@ const resolvers = {
       await author.save()
       return author
     }
-  }
+  },
+  Subscription: {
+    bookAdded: {
+      subscribe: () => pubsub.asyncIterator(['BOOK_ADDED'])
+    },
+  },
 }
 
 const server = new ApolloServer({
@@ -187,6 +206,7 @@ const server = new ApolloServer({
   }
 })
 
-server.listen().then(({ url }) => {
+server.listen().then(({ url,subscriptionsUrl }) => {
   console.log(`Server ready at ${url}`)
+  console.log(`Subscriptions ready at ${subscriptionsUrl}`)
 })
