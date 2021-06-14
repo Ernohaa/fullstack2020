@@ -8,7 +8,7 @@ export interface result {
   average: number; 
 }
 
-export const exerciseCalculator = (weeklyHours: Array<number>, target: number) : result => {
+export const exerciseCalculator = (weeklyHours: Array<number>, target: number): result => {
     const periodLength = weeklyHours.length;
     const average = weeklyHours.reduce((current:number , sum: number) => sum + current) / weeklyHours.length;
     const trainingDays = weeklyHours.filter(a => a != 0).length;
